@@ -1,15 +1,19 @@
-# odoo-folder
-
-# Permiso
-sudo chmod 777 -R *
+# Odoo Folder Oasis
 
 # Crear Usuario
-adduser --system --home=/opt/odoo10 --group odoo10
+adduser --system --home=/opt/oasis --group oasis
+su - oasis -s /bin/bash
+
+# Permiso
+sudo chmod 777 -R /opt/oasis/*
+
+* Agregar permiso al usuario  Oasis para usar docker
+sudo usermod -aG docker oasis
 
 
 # Base de Datos
 
-docker run -d  -e PGDATA=/var/lib/postgresql/data/pgdata -v {Tu-Ruta}:/var/lib/postgresql/data/pgdata -e POSTGRES_USER=odoo -e POSTGRES_PASSWORD=odoo -e POSTGRES_DB=postgres -p 5432:5432 --name db postgres:10 
+docker run -d  -e PGDATA=/var/lib/postgresql/data/pgdata -v /opt/oasis/pgdata:/var/lib/postgresql/data/pgdata -e POSTGRES_USER=odoo -e POSTGRES_PASSWORD=odoo -e POSTGRES_DB=postgres -p 5432:5432 --name db postgres:10 
 
 # ODOO
 
